@@ -32,9 +32,12 @@ void setup() {
   
 }//setup()
 
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-
+/*-------------------------------------------------------------------------------------------------
+En la funcion starAdvertising() configuramos muestro beacon, anadiendo una uuid personalizada para
+que sea mas facil de reconocer en la app.
+Tambien se le pasan los valores de la medicion de gas y de la media de dichas mediciones como minor
+y manor
+*/-------------------------------------------------------------------------------------------------
 void starAdvertising(){
 
   //Advertising packet
@@ -71,6 +74,10 @@ namespace Loop {
    int cont = 0;
 };
 
+/*-------------------------------------------------------------------------------------------------
+En el loop recogemos en variables los datos obtenidos del sensor y realizamos una media con ellos,
+además se llama a la funcion starAdvertising()
+*/-------------------------------------------------------------------------------------------------
 void loop() {
   
   using namespace Loop; 
