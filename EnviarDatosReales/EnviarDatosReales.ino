@@ -107,7 +107,7 @@ void loop() {
 
   starAdvertising(); //Llamada a la función
 
-  delay(1000);
+  delay(10000);//envio del beacon cada 10 segundos
   Serial.print( "Tiempo entre Beacons enviados:" );
   Serial.println( cont );
 
