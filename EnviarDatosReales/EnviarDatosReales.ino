@@ -14,7 +14,7 @@ int Vtemp_value = 0;
 int i = 0;
 float suma = 0;
 float media = 0;
-
+int cont = 0;
 void setup() {
   
   Serial.begin(115200); //Inicializamos el Serial
@@ -37,7 +37,7 @@ En la funcion starAdvertising() configuramos muestro beacon, anadiendo una uuid 
 que sea mas facil de reconocer en la app.
 Tambien se le pasan los valores de la medicion de gas y de la media de dichas mediciones como minor
 y manor
-*/-------------------------------------------------------------------------------------------------
+*/
 void starAdvertising(){
 
   //Advertising packet
@@ -54,7 +54,7 @@ void starAdvertising(){
      };
 
   //Le asignamos el mayor y minor para reconocer nuestro beacon
-  BLEBeacon elBeacon( beaconUUID, Vgas_value, media, 73 );
+  BLEBeacon elBeacon( beaconUUID, media, cont, 73 );
   elBeacon.setManufacturer( 0x004c ); 
   Bluefruit.Advertising.setBeacon( elBeacon );
 
@@ -71,13 +71,12 @@ void starAdvertising(){
 //-------------------------------------------------------------------------------------------------
 
 namespace Loop {
-   int cont = 0;
 };
 
 /*-------------------------------------------------------------------------------------------------
 En el loop recogemos en variables los datos obtenidos del sensor y realizamos una media con ellos,
 además se llama a la funcion starAdvertising()
-*/-------------------------------------------------------------------------------------------------
+*/
 void loop() {
   
   using namespace Loop; 
@@ -107,8 +106,8 @@ void loop() {
 
   starAdvertising(); //Llamada a la función
 
-  delay(10000);//envio del beacon cada 10 segundos
+
   Serial.print( "Tiempo entre Beacons enviados:" );
   Serial.println( cont );
-
+  delay(10000);//envio del beacon cada 10 segundos
 }//loop
